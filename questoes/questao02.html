@@ -1,0 +1,203 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Questão 02 | Carnê</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   
+    <!-- CSS Topo e Rodapé -->
+    <link href="css/starter-template.css" rel="stylesheet">
+
+    <!-- CSS Interno -->
+    <style>
+      td, th {
+        text-align: center;
+      }
+      
+      .starter-template {
+            padding: 3rem 1.5rem;
+            text-align: center;
+      }
+
+      .container {
+            width: auto;
+            max-width: 680px;
+            padding: 0 15px;
+      }
+        
+        .footer {
+            background-color: #f5f5f5;
+        }
+    </style>
+ 
+    <!-- Solução Questão - 03 -->
+    <script>
+      function carne(){
+
+        var nome         =  form_carne.nome.value;
+        var produto      =  form_carne.produto.value;
+        var valor        =  parseFloat(form_carne.valor_prod.value);
+        var quantidade   =  parseInt(form_carne.quantidade.value);
+        var parcela      =  parseInt(form_carne.parcelas.value);
+
+        var valor_total = valor * quantidade;
+        var valor_parcela = valor_total / parcela;
+
+        if(parcela == 3) {
+            valor_total = valor_total + (valor * 0.05);
+        } else if (parcela == 6) {
+            valor_total = valor_total + (valor_total * 0.12);
+          }
+
+
+        
+        for (var i = 1; i <= parcela; i++) {
+            document.getElementById(i).innerHTML = 
+            "---------------------------------------------- <b>Carnê</b> ----------------------------------------------"+
+            "<br><b>CLIENTE:</b> "           + nome           +
+            "<br><b>PRODUTO:</b> "           + produto        +
+            "<br><b>QUANTIDADE:</b> "        + quantidade     +
+            "<br><b>VALOR UNITÁRIO:</b> "    + valor          +
+            "<br><b>VALOR TOTAL:</b> "       + valor_total    +
+            "<br>"                           +
+            "<br><b>PARCELA:</b> "           + i + "/" + parcela    +
+            "<br><b>VALOR DA PARCELA:</b> "  + valor_parcela.toFixed(2)  +
+            "<br>-----------------------------------------------------------------------------------------------------"
+        }
+        
+      }
+
+      function limpar() {
+        for (var i = 1; i <= 6; i++) {
+            document.getElementById(i).innerHTML = " "
+        }
+      }
+    </script>
+
+  </head>
+
+  <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">Início</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Questões Js
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="../questoes/questao01.html">Questão 01</a></li>
+                    <li><a class="dropdown-item" href="#">Questão 02</a></li>
+                    <li><a class="dropdown-item" href="../questoes/questao03.html">Questão 03</a></li>
+                    <li><a class="dropdown-item" href="../questoes/questao04.html">Questão 04</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main role="main" class="container" >
+
+      <div class="starter-template">
+        <h1 style="font-size: 30px;">Carnê de pagamento</h1>
+        <p class="lead">Software para gerar carnê de pagamento.<br></p>
+      </div>
+      
+      
+
+      <div>
+        <form name="form_carne" id="form_carne">
+          <div class="form-row">
+            <div class="col">
+              <label>Cliente</label>
+              <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do cliente" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label>Produto</label>
+              <input type="text" class="form-control" id="produto" name="produto" placeholder="Produto escolhido" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label>Valor do produto</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">R$</span>
+                </div>
+                <input type="text" class="form-control" id="valor_prod" name="valor_prod" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <label>Quantidade</label>
+              <input type="text" class="form-control" id="qntd" name="quantidade" placeholder="Quantidade do produto" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Parcelas</label>
+                <select class="custom-select" id="parcelas" name="parcelas" required>
+                  <option selected disabled value="">Parcelamento</option>
+                  <option value="1">1 vez</option>
+                  <option value="2">2 vezes</option>
+                  <option value="3">3 vezes</option>
+                  <option value="4">4 vezes</option>
+                  <option value="5">5 vezes</option>
+                  <option value="6">6 vezes</option>
+                </select>
+          </div>
+
+          <button onclick="limpar(); carne();" class="btn btn-outline-primary float-right" type="button">Imprimir</button>
+        </form>
+      </div>
+      <br><br>
+      <p id="1"></p>
+      <p id="2"></p>
+      <p id="3"></p>
+      <p id="4"></p>
+      <p id="5"></p>
+      <p id="6"></p>
+
+    </main>
+    
+    <footer>
+        <div class="container-fluid bg-dark footer navbar-fixed-bottom">
+            <div class="row">           
+              <div class="col-sm-12 text-light pt-5 mt-2 text-center">
+                <a href="https://github.com/Atzac/my_website.git" target="_blank" style="text-decoration: none; color: white">GitHub
+                <img src="../imgs/pngjoy.com_telegram-icon-github-icon-png-white-png-download_1164606.png" style="margin-left: 2px;" width="30" height="30">
+                </a>
+              </div>
+              
+              </div>
+              <div class=" text-light p-3 text-center" style="font-size: 0.6rem;">
+                Desenvolvido para um trabalho acadêmico - Isaac Quidute
+              </div>
+            </div>
+          </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
